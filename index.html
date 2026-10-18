@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#050812">
+<title>Brazil Tools V1</title>
+<style>
+:root{--blue:#08a9ff;--blue2:#1268ff;--red:#e52336;--bg:#030712;--panel:rgba(3,10,25,.91);--line:rgba(0,166,255,.6)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#030712;color:#eef5ff;font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;min-height:100vh}
+body:before{content:"";position:fixed;inset:0;background:linear-gradient(110deg,rgba(0,0,0,.72),rgba(0,15,42,.72)),url("assets/killua-background.jpg") center/cover fixed;z-index:-2}
+body:after{content:"";position:fixed;inset:0;background:radial-gradient(ellipse at 50% 10%,rgba(0,112,255,.22),transparent 55%);z-index:-1;pointer-events:none}
+button,input{font:inherit}.hidden{display:none!important}
+.brand{text-align:center;padding:28px 16px 18px;text-shadow:0 0 18px #008cff}
+.brand h1{margin:0;font-size:clamp(2rem,7vw,4.4rem);font-weight:1000;letter-spacing:1px;line-height:1.03}
+.brand .brazil{color:#09aaff}.brand .tools{color:#f2f6ff}.brand .v1{color:var(--red)}
+.brand p{color:#b9e8ff;margin:12px 0 0}
+.wrap{width:min(1120px,94%);margin:0 auto 40px}
+.panel{background:var(--panel);border:1px solid var(--line);box-shadow:0 0 28px rgba(0,130,255,.19),inset 0 0 20px rgba(0,92,255,.05);border-radius:20px;backdrop-filter:blur(10px)}
+.intro-panel{width:min(900px,100%);margin:14px auto;padding:12px;overflow:hidden}.intro-video{display:block;width:100%;max-height:430px;aspect-ratio:16/9;object-fit:contain;background:#000;border-radius:13px;border:1px solid #087de5}.login{width:min(520px,100%);margin:14px auto;padding:28px}
+h2{margin:0 0 8px;font-size:1.55rem}.muted{color:#a7c8e9}
+.field{display:block;width:100%;margin:13px 0;padding:15px 16px;background:#031329;color:white;border:1px solid #087de5;border-radius:12px;outline:none}
+.field:focus{box-shadow:0 0 0 3px #087de544}
+.btn{border:0;border-radius:12px;padding:14px 18px;color:#fff;background:linear-gradient(100deg,#087fff,#064bdf);font-weight:800;cursor:pointer;box-shadow:0 0 17px #006dff4d}
+.btn:hover{filter:brightness(1.12)}.btn.red{background:linear-gradient(100deg,#f02c40,#8d0c20)}.btn.secondary{background:#08172d;border:1px solid #1765ac}
+.error{color:#ff9ca6;min-height:1.5em}.tiny{font-size:.85rem;color:#a8c8e8}
+.topbar{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:16px;margin:16px 0}
+.nav{display:flex;flex-wrap:wrap;gap:8px}.nav button{background:#07152b;border:1px solid #123c66;color:#e8f4ff;padding:11px 15px;border-radius:10px;cursor:pointer;font-weight:800}
+.nav button.active,.nav button:hover{background:#075ee9;border-color:#19baff;box-shadow:0 0 14px #087fff66}
+.content{padding:22px;margin-top:14px}.content-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;border-bottom:1px solid #17446b;padding-bottom:14px;margin-bottom:18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,310px),1fr));gap:16px}
+.item{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(150px,1fr);gap:16px;padding:12px;border:1px solid #087de5;border-radius:15px;background:rgba(2,10,23,.88);align-items:center}
+.item img{width:100%;height:190px;object-fit:cover;border-radius:10px;border:1px solid #174e86}
+.item h3{margin:0 0 8px;color:#dcefff}.item p{color:#9ecbf0;font-size:.9rem}
+.item .btn{display:block;text-align:center;text-decoration:none;margin-top:10px}
+.placeholder{min-height:160px;border-radius:10px;background:linear-gradient(135deg,#06142c,#020611);border:1px dashed #1465a7;display:grid;place-items:center;color:#a6c9eb}
+.supporters{padding:22px;margin-top:18px}.supporters-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;border-bottom:1px solid #17446b;padding-bottom:14px;margin-bottom:18px}.supporters-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,245px),1fr));gap:12px}.supporter-card{display:flex;align-items:center;gap:12px;padding:14px;border:1px solid #14528a;border-radius:14px;background:linear-gradient(135deg,rgba(4,23,48,.96),rgba(2,9,22,.96));min-width:0}.supporter-icon{width:48px;height:48px;flex:0 0 48px;display:grid;place-items:center;border-radius:13px;background:linear-gradient(145deg,#ff3448,#a90d20);box-shadow:0 0 14px #ff1c3940}.supporter-icon svg{width:25px;height:25px;fill:#fff}.supporter-info{flex:1;min-width:0}.supporter-info strong{display:block;overflow-wrap:anywhere;color:#eff8ff}.supporter-info small{display:block;color:#91bce4;margin-top:3px}.supporter-link{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;text-decoration:none;padding:9px 11px;border-radius:9px;background:#075ee9;color:#fff;font-size:.85rem;font-weight:800}.supporter-link:hover{filter:brightness(1.15)}.supporter-card.owner{border-color:#13a9ff;box-shadow:inset 0 0 18px #008cff13}.supporter-card.owner .supporter-icon{background:linear-gradient(145deg,#087fff,#063fa7)}.footer{text-align:center;color:#a6c9eb;padding:24px}
+@media(max-width:650px){.login{padding:20px}.item{grid-template-columns:1fr}.item img{height:210px}.topbar{align-items:flex-start}.content{padding:14px}.brand{padding-top:22px}}
+</style>
+</head>
+<body>
+<header class="brand">
+  <h1><span class="brazil">BRAZIL</span> <span class="tools">TOOLS</span> <span class="v1">V1</span></h1>
+  <p>بوابتك إلى أقسام Brazil Tools V1</p>
+</header>
+<main class="wrap">
+  <section class="panel intro-panel" aria-label="فيديو الانترو"><video class="intro-video" src="assets/intro.mp4" autoplay muted loop playsinline controls preload="metadata">متصفحك لا يدعم تشغيل الفيديو.</video></section>
+  <section id="loginView" class="panel login">
+    <h2>👑 تسجيل الدخول</h2>
+    <p class="muted">أدخل بيانات الدخول للوصول إلى أقسام الموقع.</p>
+    <form id="loginForm">
+      <input class="field" id="username" autocomplete="username" placeholder="اسم المستخدم Username" required>
+      <input class="field" id="password" type="password" autocomplete="current-password" placeholder="كلمة المرور Password" required>
+      <button class="btn" type="submit" style="width:100%">دخول ←</button>
+      <p id="loginError" class="error" role="status"></p>
+    </form>
+    <p class="tiny">نسخة أولية للتجربة. تسجيل الدخول هنا محلي داخل المتصفح وليس حماية خادمية.</p>
+  </section>
+
+  <section id="siteView" class="hidden">
+    <div class="panel topbar">
+      <div><strong>🔥 BRAZIL TXT</strong><div class="tiny">أهلاً بك في Brazil Tools V1</div></div>
+      <div class="nav" id="nav"></div>
+      <button class="btn red" id="logoutBtn">تسجيل الخروج</button>
+    </div>
+    <section class="panel content">
+      <div class="content-head">
+        <div><h2 id="sectionTitle">SKIN</h2><div class="muted">اختر العنصر ثم اضغط على رابط التحميل.</div></div>
+      </div>
+      <div class="grid" id="items"></div>
+    </section>
+
+    <section class="panel supporters" id="supportersSection">
+      <div class="supporters-head">
+        <div><h2>🤝 القنوات الداعمة</h2><div class="muted">شكرًا لكل من ساهم في دعم Brazil Tool V1</div></div>
+        <span class="tiny">10 قنوات على يوتيوب</span>
+      </div>
+      <div class="supporters-grid" id="supportersGrid"></div>
+    </section>
+  </section>
+</main>
+<footer class="footer">BRAZIL TOOLS V1 · نسخة أولية قابلة للتعديل</footer>
+<script>
+const LOGIN_USER = "BrazilTxT1k";
+const LOGIN_PASS = "9996799";
+const categories = ["SKIN","WEAPON","EMOTE","AVATAR","BANNER"];
+const skinImage = "assets/skin-1.jpg";
+const initialItems = [
+ {category:"SKIN",name:"SKIN 1 💎😎",link:"https://www.mediafire.com/file/rbg4kpyf9q9409t/SKIN_1_%25F0%259F%2592%258E%25F0%259F%2598%258E.zip/file",image:skinImage,desc:"رابط MediaFire للسكن الأول"},
+ {category:"SKIN",name:"SKIN 2 💎😎",link:"https://www.mediafire.com/file/mfit3fz9ykwxd85/SKIN_2_%25F0%259F%2592%258E%25F0%259F%2598%258E.zip/file",image:"",desc:"بانتظار الصورة الأصلية"},
+ {category:"SKIN",name:"SKIN 2 🌹✨",link:"https://www.mediafire.com/file/s6yc6jug3q1eu2d/SKIN_2%25F0%259F%258C%25B9%25E2%259C%25A8..7z/file",image:"",desc:"رابط تحميل السكن الثاني 🌹✨"},
+ {category:"SKIN",name:"SKIN 4 🌹✨",link:"https://www.mediafire.com/file/hoj996lslpkmelp/SKIN_4%25F0%259F%258C%25B9%25E2%259C%25A8..7z/file",image:"",desc:"رابط تحميل السكن الرابع 🌹✨"},
+ {category:"SKIN",name:"SKIN 🌹✨",link:"https://www.mediafire.com/file/yab270f88z8ke0g/SKIN_%25F0%259F%258C%25B9%25E2%259C%25A8..7z/file",image:"",desc:"رابط تحميل السكن 🌹✨"},
+ {category:"AVATAR",name:"AFTAR 😈",link:"https://www.mediafire.com/file/gzjxq7rxq4nu55q/AFTAR_%25F0%259F%2598%2588.zip/file",image:"",desc:"رابط تحميل افتار 😈"},
+ {category:"AVATAR",name:"AFTAR Brazil",link:"https://www.mediafire.com/file/wkdi4i5ec53ohpm/AFTAR_Brazil.zip/file",image:"",desc:"رابط تحميل افتار Brazil"},
+ {category:"AVATAR",name:"AFATAR Brazil",link:"https://www.mediafire.com/file/vugxy1vpeyfqhjc/AFATAR_Brazil.zip/file",image:"",desc:"رابط تحميل افتار Brazil"},
+ {category:"BANNER",name:"BANAR Brazil",link:"https://www.mediafire.com/file/lf7mra1nxfkxjlo/banar+.zip/file?dkey=7buu8fld77c&r=1819",image:"",desc:"رابط تحميل البنرات Brazil"},
+ {category:"WEAPON",name:"USP ⚪🟣⚫",link:"https://www.mediafire.com/file/gedqr95jowhla1c/USP+%E2%9A%AA%F0%9F%9F%A3%E2%9A%AB.zip/file",image:"",desc:"رابط تحميل سلاح USP"},
+ {category:"WEAPON",name:"WOODPECKER",link:"https://www.mediafire.com/file/2i24g7qg9cllset/WOODPECKER.zip/file",image:"",desc:"رابط تحميل سلاح WOODPECKER"},
+ {category:"EMOTE",name:"GLITCH Emote By YOUSSEF 999",link:"https://www.mediafire.com/file/9xenhftpjg0x9jp/GLITCH+Emote+By+YOUSSEF+999.zip/file",image:"",desc:"رابط تحميل رقصة GLITCH من YOUSSEF 999"},
+ {category:"EMOTE",name:"Emote 2",link:"https://www.mediafire.com/file/p9sfiykmdhqhz9g/Emote+%D9%A2.zip/file",image:"",desc:"رابط تحميل الرقصة الثانية"},
+ {category:"EMOTE",name:"GLITCH dance",link:"https://www.mediafire.com/file/ql3uh1ecd49bmhu/GLITCH+dance.zip/file",image:"",desc:"رابط تحميل رقصة GLITCH dance"},
+];
+let currentCategory = "SKIN";
+const supporterChannels = [
+ {name:"ITACHI TxT",url:"https://youtube.com/@itatchi-txt?si=ArZzpHkcHnFJBstz"},
+ {name:"Zoro TxT",url:"https://youtube.com/@zoro_txt?si=lLtSsNdr0X1ZPEpN"},
+ {name:"Loki TxT",url:"https://youtube.com/@loki_txt?si=doq7eJxCSLUI5WJ6"},
+ {name:"Minox TxT",url:"https://www.youtube.com/@Minox_TXT"},
+ {name:"SAZOLIK TxT",url:"https://youtube.com/@sazolik?si=VDIeReBd3ATiv8AL"},
+ {name:"Brazil TxT",url:"https://youtube.com/@brazil-txt?si=lIny-ebm0dKph2Mx",owner:true},
+ {name:"YOUSSEF 999",url:"https://youtube.com/@youssef_999_v_ff?si=LgQdftL9Xa4fE5iP"},
+ {name:"AHM X",url:"https://youtube.com/@ahm_x_6?si=pYhjfrw69RV9GDlw"},
+ {name:"Colombo TxT",url:"https://youtube.com/@colombo7x?si=XZXQjSJqPOONZkV1"},
+ {name:"RAYAN TxT",url:"https://youtube.com/@rayan-txt?si=xUPTJ3CVV9TWF_eM"}
+];
+function renderSupporters(){
+ const root=document.getElementById("supportersGrid");
+ const playIcon='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.3 3.6-6.3 3.6Z"/></svg>';
+ root.innerHTML=supporterChannels.map(c=>`<article class="supporter-card ${c.owner?'owner':''}"><div class="supporter-icon">${playIcon}</div><div class="supporter-info"><strong>${safeText(c.name)}${c.owner?' 👑':''}</strong><small>${c.owner?'قناتي الرسمية':'قناة داعمة'}</small></div><a class="supporter-link" href="${safeText(c.url)}" target="_blank" rel="noopener noreferrer">زيارة القناة ↗</a></article>`).join("");
+}
+function readItems(){try{return [...initialItems,...JSON.parse(localStorage.getItem("brazilExtraItems")||"[]")]}catch(e){return initialItems}}
+function renderNav(){
+ const nav=document.getElementById("nav"); nav.innerHTML="";
+ categories.forEach(c=>{const b=document.createElement("button");b.textContent=c;b.className=c===currentCategory?"active":"";b.onclick=()=>{currentCategory=c;renderNav();renderItems()};nav.appendChild(b)});
+}
+function safeText(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
+function renderItems(){
+ document.getElementById("sectionTitle").textContent=currentCategory;
+ const root=document.getElementById("items");root.innerHTML="";
+ const list=readItems().filter(x=>x.category===currentCategory);
+ if(!list.length){root.innerHTML='<div class="placeholder">لا توجد عناصر في هذا القسم بعد.</div>';return}
+ list.forEach(x=>{
+  const card=document.createElement("article");card.className="item";
+  const media=x.image?`<img src="${safeText(x.image)}" alt="${safeText(x.name)}" onerror="this.outerHTML='<div class=&quot;placeholder&quot;>الصورة غير متاحة</div>'">`:'<div class="placeholder">الصورة ستُضاف قريبًا</div>';
+  card.innerHTML=`${media}<div><h3>${safeText(x.name)}</h3><p>${safeText(x.desc||"")}</p><a class="btn" href="${safeText(x.link)}" target="_blank" rel="noopener noreferrer">تحميل من MediaFire ↗</a></div>`;
+  root.appendChild(card);
+ });
+}
+document.getElementById("loginForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ const u=document.getElementById("username").value.trim(),p=document.getElementById("password").value;
+ if(u===LOGIN_USER&&p===LOGIN_PASS){document.getElementById("loginView").classList.add("hidden");document.getElementById("siteView").classList.remove("hidden");document.getElementById("loginError").textContent="";renderNav();renderItems();renderSupporters()}
+ else document.getElementById("loginError").textContent="اسم المستخدم أو كلمة المرور غير صحيحة.";
+});
+document.getElementById("logoutBtn").onclick=()=>{document.getElementById("siteView").classList.add("hidden");document.getElementById("loginView").classList.remove("hidden");document.getElementById("password").value=""};
+</script>
+</body>
+</html>
