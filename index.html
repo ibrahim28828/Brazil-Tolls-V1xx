@@ -36,6 +36,14 @@ h2{margin:0 0 8px;font-size:1.55rem}.muted{color:#a7c8e9}
 .placeholder{min-height:160px;border-radius:10px;background:linear-gradient(135deg,#06142c,#020611);border:1px dashed #1465a7;display:grid;place-items:center;color:#a6c9eb}
 .supporters{padding:22px;margin-top:18px}.supporters-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;border-bottom:1px solid #17446b;padding-bottom:14px;margin-bottom:18px}.supporters-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,245px),1fr));gap:12px}.supporter-card{display:flex;align-items:center;gap:12px;padding:14px;border:1px solid #14528a;border-radius:14px;background:linear-gradient(135deg,rgba(4,23,48,.96),rgba(2,9,22,.96));min-width:0}.supporter-icon{width:48px;height:48px;flex:0 0 48px;display:grid;place-items:center;border-radius:13px;background:linear-gradient(145deg,#ff3448,#a90d20);box-shadow:0 0 14px #ff1c3940}.supporter-icon svg{width:25px;height:25px;fill:#fff}.supporter-info{flex:1;min-width:0}.supporter-info strong{display:block;overflow-wrap:anywhere;color:#eff8ff}.supporter-info small{display:block;color:#91bce4;margin-top:3px}.supporter-link{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;text-decoration:none;padding:9px 11px;border-radius:9px;background:#075ee9;color:#fff;font-size:.85rem;font-weight:800}.supporter-link:hover{filter:brightness(1.15)}.supporter-card.owner{border-color:#13a9ff;box-shadow:inset 0 0 18px #008cff13}.supporter-card.owner .supporter-icon{background:linear-gradient(145deg,#087fff,#063fa7)}.footer{text-align:center;color:#a6c9eb;padding:24px}
 @media(max-width:650px){.login{padding:20px}.item{grid-template-columns:1fr}.item img{height:210px}.topbar{align-items:flex-start}.content{padding:14px}.brand{padding-top:22px}}
+
+.placeholder{position:relative;overflow:hidden}
+.placeholder svg{width:76%;height:76%;fill:none;stroke:#168dff;stroke-width:4;stroke-linejoin:round;stroke-linecap:round;filter:drop-shadow(0 0 8px rgba(0,145,255,.35))}
+.placeholder-skin svg{width:68%;height:78%;fill:rgba(0,126,255,.10);stroke:#25a8ff;stroke-width:3}
+.placeholder-weapon svg{width:88%;height:70%;fill:rgba(0,126,255,.14);stroke:#25a8ff;stroke-width:4}
+.placeholder-emote .dance-icon{font-size:76px;filter:drop-shadow(0 0 9px rgba(0,145,255,.4))}
+.placeholder-avatar svg{width:70%;height:70%;fill:rgba(0,126,255,.12)}
+.placeholder-banner svg{width:90%;height:82%;fill:rgba(0,126,255,.08)}
 </style>
 </head>
 <body>
@@ -125,6 +133,16 @@ function renderNav(){
  categories.forEach(c=>{const b=document.createElement("button");b.textContent=c;b.className=c===currentCategory?"active":"";b.onclick=()=>{currentCategory=c;renderNav();renderItems()};nav.appendChild(b)});
 }
 function safeText(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
+function placeholderFor(category){
+ const icons={
+  SKIN:'<svg viewBox="0 0 100 100" aria-hidden="true"><path d="M34 15 18 23 7 43 25 52 32 39 32 86 68 86 68 39 75 52 93 43 82 23 66 15 58 24 42 24Z"/></svg>',
+  WEAPON:'<svg viewBox="0 0 100 100" aria-hidden="true"><path d="M8 35 60 35 60 27 73 27 73 35 91 35 91 45 73 45 73 51 60 51 60 45 44 45 44 55 35 55 35 65 26 65 26 55 18 55 18 45 8 45Z"/></svg>',
+  EMOTE:'<span class="dance-icon" aria-hidden="true">🕺</span>',
+  AVATAR:'<svg viewBox="0 0 100 100" aria-hidden="true"><rect x="12" y="12" width="76" height="76" rx="12"/><circle cx="50" cy="39" r="15"/><path d="M24 79 Q26 56 50 56 Q74 56 76 79Z"/></svg>',
+  BANNER:'<svg viewBox="0 0 100 100" aria-hidden="true"><rect x="8" y="25" width="84" height="50" rx="5"/><path d="M18 64 39 43 52 55 63 46 82 64Z"/></svg>'
+ };
+ return `<div class="placeholder placeholder-${category.toLowerCase()}">${icons[category]||icons.AVATAR}</div>`;
+}
 function renderItems(){
  document.getElementById("sectionTitle").textContent=currentCategory;
  const root=document.getElementById("items");root.innerHTML="";
@@ -132,7 +150,7 @@ function renderItems(){
  if(!list.length){root.innerHTML='<div class="placeholder">لا توجد عناصر في هذا القسم بعد.</div>';return}
  list.forEach(x=>{
   const card=document.createElement("article");card.className="item";
-  const media=x.image?`<img src="${safeText(x.image)}" alt="${safeText(x.name)}" onerror="this.outerHTML='<div class=&quot;placeholder&quot;>الصورة غير متاحة</div>'">`:'<div class="placeholder">الصورة ستُضاف قريبًا</div>';
+  const media=x.image?`<img src="${safeText(x.image)}" alt="${safeText(x.name)}" onerror="this.outerHTML=placeholderFor('${x.category}')">`:placeholderFor(x.category);
   card.innerHTML=`${media}<div><h3>${safeText(x.name)}</h3><p>${safeText(x.desc||"")}</p><a class="btn" href="${safeText(x.link)}" target="_blank" rel="noopener noreferrer">تحميل من MediaFire ↗</a></div>`;
   root.appendChild(card);
  });
